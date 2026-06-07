@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>SPMB SMPN 1 Poli-Polia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    :root {
+      --primary-blue: #4F8EF7;
+      --white: #FFFFFF;
+      --light-gray: #F5F7FA;
+      --soft-green: #6FCF97;
+      --text-dark: #2C3E50;
+      --shadow-soft: 0 10px 25px rgba(79, 142, 247, 0.1);
+    }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--light-gray); color: var(--text-dark); }
+    .navbar-custom { background-color: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+    .navbar-custom .nav-link { color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+    .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active { color: var(--primary-blue); }
+    .card-modern {
+      background: var(--white); border: none; border-radius: 15px;
+      box-shadow: var(--shadow-soft); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-modern:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(79, 142, 247, 0.15); }
+    .btn-primary-custom {
+      background-color: var(--primary-blue); color: var(--white); border-radius: 8px;
+      padding: 10px 24px; font-weight: 500; border: none; transition: 0.3s;
+    }
+    .btn-primary-custom:hover { background-color: #3B72C6; color: white; transform: scale(1.02); }
+    .hero-section {
+      background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+      padding: 60px 20px; border-radius: 15px; margin-bottom: 30px; text-align: center;
+    }
+    .timeline { border-left: 3px solid var(--primary-blue); padding-left: 20px; margin-left: 20px; }
+    .timeline-item { position: relative; margin-bottom: 25px; }
+    .timeline-item::before {
+      content: ''; position: absolute; width: 15px; height: 15px; background: var(--primary-blue);
+      border-radius: 50%; left: -29px; top: 5px; box-shadow: 0 0 0 4px var(--light-gray);
+    }
+    .loader-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(255,255,255,0.9); z-index: 9999;
+      display: none; justify-content: center; align-items: center; flex-direction: column;
+    }
+    .spinner {
+      width: 50px; height: 50px; border: 5px solid #e2e8f0; border-top-color: var(--primary-blue);
+      border-radius: 50%; animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <div class="loader-overlay" id="loader">
+    <div class="spinner"></div>
+    <div class="mt-3 fw-bold text-primary-blue" id="loader-text">Sedang Menyimpan Data ke Database...</div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#" onclick="showSection('home')">
+        <img src="https://i.ibb.co.com/1fcsLBWZ/LOGO-SEKOLAH.png" alt="Logo" height="40" class="me-2">
+        <strong class="d-none d-sm-block">SMPN 1 POLI-POLIA</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" id="nav-home" href="#" onclick="showSection('home')">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" id="nav-profil" href="#" onclick="showSection('profil')">Profil</a></li>
+          <li class="nav-item"><a class="nav-link" id="nav-alur" href="#" onclick="showSection('alur')">Alur</a></li>
+          <li class="nav-item">
+            <a class="btn btn-primary-custom ms-lg-3 mt-2 mt-lg-0" href="#" onclick="showSection('daftar')">
+              <i class="fas fa-edit me-1"></i> Daftar Sekarang
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-4 my-md-5">
+    
+    <!-- BERANDA -->
+    <section id="home" class="content-section">
+      <div class="hero-section card-modern">
+        <h1 class="fw-bold text-dark mb-3">Penerimaan Murid Baru</h1>
+        <h2 class="text-primary-blue mb-4">SMP NEGERI 1 POLI-POLIA</h2>
+        <p class="lead mb-4">Tahun Ajaran 2026–2027</p>
+        <button class="btn btn-primary-custom btn-lg px-4 px-md-5" onclick="showSection('daftar')">Mulai Pendaftaran</button>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card-modern p-4 h-100">
+            <h4 class="mb-3"><i class="fas fa-calendar-alt text-primary-blue me-2"></i> Jadwal Pendaftaran</h4>
+            <ul class="list-unstyled">
+              <li class="mb-2"><i class="fas fa-check-circle text-soft-green me-2"></i><strong>Gelombang I:</strong> 23-25 Juni 2026</li>
+              <li><i class="fas fa-check-circle text-soft-green me-2"></i><strong>Gelombang II:</strong> 26-29 Juni 2026</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-modern p-4 h-100">
+            <h4 class="mb-3"><i class="fas fa-route text-primary-blue me-2"></i> Jalur Pendaftaran</h4>
+            <span class="badge bg-primary mb-2 p-2">Zonasi (Domisili)</span>
+            <span class="badge bg-success mb-2 p-2">Afirmasi</span>
+            <span class="badge bg-warning text-dark mb-2 p-2">Prestasi</span>
+            <span class="badge bg-info text-dark mb-2 p-2">Mutasi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFIL -->
+    <section id="profil" class="content-section" style="display:none;">
+      <div class="card-modern p-4 p-md-5">
+        <h2 class="text-center mb-4 fw-bold text-primary-blue">Profil & Visi Misi</h2>
+        <div class="mb-4">
+          <h5 class="fw-bold"><i class="fas fa-eye me-2 text-primary-blue"></i> Visi</h5>
+          <p class="lead fst-italic fs-6">"TERWUJUDNYA GENERASI PELAJAR YANG UTUH DAN ADAPTIF DENGAN PERUBAHAN ZAMAN"</p>
+        </div>
+        <div>
+          <h5 class="fw-bold"><i class="fas fa-bullseye me-2 text-primary-blue"></i> Misi</h5>
+          <ol class="list-group list-group-numbered list-group-flush">
+            <li class="list-group-item bg-transparent border-0 px-0">Menyelenggarakan pembelajaran yang mendalam dan bermakna (mindful, meaningful, joyful).</li>
+            <li class="list-group-item bg-transparent border-0 px-0">Menumbuhkan karakter utuh melalui olah pikir, olah hati, olah rasa, dan olah raga.</li>
+            <li class="list-group-item bg-transparent border-0 px-0">Mendorong adaptabilitas melalui integrasi teknologi dan literasi digital.</li>
+            <li class="list-group-item bg-transparent border-0 px-0">Menguatkan nilai-nilai lokal budaya Tolaki dan Pancasila.</li>
+            <li class="list-group-item bg-transparent border-0 px-0">Membangun ekosistem belajar inklusif, kolaboratif, dan menggembirakan.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALUR -->
+    <section id="alur" class="content-section" style="display:none;">
+      <div class="card-modern p-4 p-md-5">
+        <h2 class="text-center mb-5 fw-bold text-primary-blue">Alur Pendaftaran</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h5>1. Siapkan Berkas</h5>
+            <p class="text-muted fs-6">Siapkan file Pas Foto, KK, Akta, Ijazah/SKL, dan KIS (Opsional). Maks 2MB/file.</p>
+          </div>
+          <div class="timeline-item">
+            <h5>2. Isi Formulir</h5>
+            <p class="text-muted fs-6">Lengkapi data diri pada menu Daftar Sekarang.</p>
+          </div>
+          <div class="timeline-item">
+            <h5>3. Verifikasi Panitia</h5>
+            <p class="text-muted fs-6">Data Anda akan otomatis masuk ke Database untuk diverifikasi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM PENDAFTARAN -->
+    <section id="daftar" class="content-section" style="display:none;">
+      <div class="card-modern p-4 p-md-5">
+        <h3 class="mb-4 fw-bold text-primary-blue"><i class="fas fa-file-alt me-2"></i>Formulir Pendaftaran</h3>
+        <form id="formDaftar">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-bold small">Nama Lengkap</label>
+              <input type="text" class="form-control" id="nama" required>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="form-label fw-bold small">NISN</label>
+              <input type="number" class="form-control" id="nisn" required>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="form-label fw-bold small">NIK</label>
+              <input type="number" class="form-control" id="nik" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold small">Tempat & Tanggal Lahir</label>
+              <input type="text" class="form-control" id="ttl" placeholder="Kolaka, 31 Desember 2013" required>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="form-label fw-bold small">Jenis Kelamin</label>
+              <select class="form-select" id="jk" required>
+                <option value="">Pilih...</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="form-label fw-bold small">Agama</label>
+              <select class="form-select" id="agama" required>
+                <option value="Islam">Islam</option>
+                <option value="Kristen">Kristen</option>
+                <option value="Katolik">Katolik</option>
+                <option value="Hindu">Hindu</option>
+                <option value="Buddha">Buddha</option>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label fw-bold small">Asal Sekolah Dasar (SD)</label>
+              <input type="text" class="form-control" id="asalSekolah" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-bold small">Alamat Lengkap Domisili</label>
+              <textarea class="form-control" id="alamat" rows="2" required></textarea>
+            </div>
+            
+            <h5 class="mt-4 border-bottom pb-2 fw-bold text-primary-blue">Data Orang Tua</h5>
+            <div class="col-md-6">
+              <label class="form-label fw-bold small">Nama Ayah</label>
+              <input type="text" class="form-control" id="namaAyah" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold small">Nama Ibu</label>
+              <input type="text" class="form-control" id="namaIbu" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold small">No. HP / WhatsApp (Aktif)</label>
+              <input type="tel" class="form-control" id="hp" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold small">Email Aktif</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+
+            <h5 class="mt-4 border-bottom pb-2 fw-bold text-primary-blue">Upload Berkas <span class="text-danger small">(Maks 2MB/file)</span></h5>
+            <div class="col-md-4">
+              <label class="form-label fw-bold small">Pas Foto (Warna)</label>
+              <input type="file" class="form-control" id="foto" accept="image/jpeg, image/png" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold small">Kartu Keluarga (KK)</label>
+              <input type="file" class="form-control" id="kk" accept="image/jpeg, image/png, application/pdf" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold small">Akta Kelahiran</label>
+              <input type="file" class="form-control" id="akta" accept="image/jpeg, image/png, application/pdf" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold small">Ijazah / SKL</label>
+              <input type="file" class="form-control" id="ijazah" accept="image/jpeg, image/png, application/pdf" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold small">Kartu KIS / PKH (Opsional)</label>
+              <input type="file" class="form-control" id="kis" accept="image/jpeg, image/png, application/pdf">
+            </div>
+
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary-custom w-100 py-3 fs-5">
+                <i class="fas fa-paper-plane me-2"></i> Kirim Pendaftaran
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    // --- GANTI URL DI BAWAH INI DENGAN URL DEPLOY APPS SCRIPT ANDA ---
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDlUQ9NR5-TMb1azGtn8BUx3vnNBrsGmB7j0oRosuLhzmPyDnoUUInWe_JTIw4h1yo/exec"; 
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.content-section').forEach(sec => sec.style.display = 'none');
+      document.getElementById(sectionId).style.display = 'block';
+      document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+      let activeNav = document.getElementById('nav-' + sectionId);
+      if(activeNav) activeNav.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function readFileAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        if(!file) return resolve("");
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      showSection('home');
+      
+      document.getElementById('formDaftar').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        document.getElementById('loader').style.display = 'flex';
+        
+        try {
+          const formData = {
+            nama: document.getElementById('nama').value,
+            nisn: document.getElementById('nisn').value,
+            nik: document.getElementById('nik').value,
+            ttl: document.getElementById('ttl').value,
+            jk: document.getElementById('jk').value,
+            agama: document.getElementById('agama').value,
+            alamat: document.getElementById('alamat').value,
+            asalSekolah: document.getElementById('asalSekolah').value,
+            namaAyah: document.getElementById('namaAyah').value,
+            namaIbu: document.getElementById('namaIbu').value,
+            hp: document.getElementById('hp').value,
+            email: document.getElementById('email').value,
+          };
+
+          const fotoFile = document.getElementById('foto').files[0];
+          const kkFile = document.getElementById('kk').files[0];
+          const aktaFile = document.getElementById('akta').files[0];
+          const ijazahFile = document.getElementById('ijazah').files[0];
+          const kisFile = document.getElementById('kis').files[0];
+
+          const maxSize = 2 * 1024 * 1024;
+          if (fotoFile.size > maxSize || kkFile.size > maxSize || aktaFile.size > maxSize || ijazahFile.size > maxSize || (kisFile && kisFile.size > maxSize)) {
+            throw new Error("Maksimal ukuran masing-masing file adalah 2MB!");
+          }
+
+          document.getElementById('loader-text').innerText = "Memproses Berkas...";
+          
+          formData.fotoData = await readFileAsBase64(fotoFile);
+          formData.kkData = await readFileAsBase64(kkFile);
+          formData.aktaData = await readFileAsBase64(aktaFile);
+          formData.ijazahData = await readFileAsBase64(ijazahFile);
+          formData.kisData = kisFile ? await readFileAsBase64(kisFile) : "";
+
+          document.getElementById('loader-text').innerText = "Menyimpan ke Spreadsheet...";
+
+          // Mengirim data ke Google Apps Script via API Fetch
+          const response = await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(formData)
+          });
+          
+          const result = await response.json();
+
+          if (result.status === "success") {
+            Swal.fire({
+              icon: 'success',
+              title: 'Pendaftaran Berhasil!',
+              text: 'Nomor Registrasi: ' + result.noDaftar,
+              confirmButtonColor: '#4F8EF7'
+            }).then(() => {
+              document.getElementById('formDaftar').reset();
+              showSection('home');
+            });
+          } else {
+            throw new Error(result.message);
+          }
+            
+        } catch (error) {
+          Swal.fire('Terjadi Kesalahan', error.message, 'error');
+        } finally {
+          document.getElementById('loader').style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
