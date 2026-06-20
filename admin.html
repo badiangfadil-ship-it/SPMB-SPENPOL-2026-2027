@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin PPDB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#F5F7FA] font-poppins min-h-screen text-gray-800 flex">
+
+  <div id="login-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-fade-in">
+      <div class="bg-gradient-to-r from-slate-800 to-slate-950 p-6 text-white text-center">
+        <i class="fa-solid fa-shield-halved text-3xl text-[#4F8EF7] mb-2"></i>
+        <h3 class="text-lg font-bold">Autentikasi Administrator</h3>
+        <p class="text-xs text-gray-400 mt-0.5">PPDB SMPN 1 Poli-Polia</p>
+      </div>
+      <form onsubmit="handleAdminLogin(event)" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-gray-600 mb-1 uppercase">Username</label>
+          <input type="text" id="adminUser" required class="w-full px-4 py-2.5 bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-slate-300">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-600 mb-1 uppercase">Password</label>
+          <input type="password" id="adminPass" required class="w-full px-4 py-2.5 bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-slate-300">
+        </div>
+        <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition-all shadow-md">Masuk ke Sistem</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="admin-main-ui" class="hidden w-full flex flex-col md:flex-row min-h-screen">
+    
+    <aside class="w-full md:w-64 bg-slate-900 text-slate-300 flex-shrink-0 flex flex-col border-r border-slate-800">
+      <div class="p-6 border-b border-slate-800 flex items-center space-x-3">
+        <div class="p-2.5 bg-[#4F8EF7]/10 rounded-xl text-[#4F8EF7]"><i class="fa-solid fa-chart-line text-xl"></i></div>
+        <div>
+          <h2 class="text-white font-bold text-sm uppercase">Admin Panel</h2>
+          <span class="text-[10px] text-gray-400 block font-semibold">SMPN 1 Poli-Polia</span>
+        </div>
+      </div>
+      <nav class="flex-1 p-4 space-y-1">
+        <button class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold bg-slate-800 text-white"><i class="fa-solid fa-users-viewfinder"></i><span>Data Calon Siswa</span></button>
+      </nav>
+      <div class="p-4 border-t border-slate-800">
+        <button onclick="window.location.reload()" class="w-full bg-red-500/10 hover:bg-red-500/20 text-red-400 font-bold py-2.5 rounded-xl text-xs transition-colors flex items-center justify-center space-x-2"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Log Out Sesi</span></button>
+      </div>
+    </aside>
+
+    <main class="flex-1 p-6 md:p-10 space-y-6 overflow-y-auto">
+      <header class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b pb-5">
+        <div>
+          <h1 class="text-2xl font-black text-gray-900">Validasi Data Pendaftaran</h1>
+          <p class="text-xs sm:text-sm text-gray-400 font-medium">Lakukan verifikasi berkas lampiran fisik dokumen calon siswa baru di bawah ini.</p>
+        </div>
+        <button onclick="fetchAdminStats()" class="bg-white border hover:bg-gray-50 px-4 py-2 rounded-xl shadow-sm text-xs font-bold text-gray-600 flex items-center space-x-2 transition-all"><i class="fa-solid fa-arrows-rotate"></i><span>Refresh Data</span></button>
+      </header>
+
+      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white p-5 rounded-2xl border shadow-sm"><span class="text-xs font-bold text-gray-400 block uppercase">Total Masuk</span><span class="text-2xl font-black text-gray-800 block mt-1" id="st-total">0</span></div>
+        <div class="bg-white p-5 rounded-2xl border shadow-sm"><span class="text-xs font-bold text-emerald-500 block uppercase">Diterima</span><span class="text-2xl font-black text-emerald-600 block mt-1" id="st-lulus">0</span></div>
+        <div class="bg-white p-5 rounded-2xl border shadow-sm"><span class="text-xs font-bold text-amber-500 block uppercase">Pending</span><span class="text-2xl font-black text-amber-600 block mt-1" id="st-proses">0</span></div>
+        <div class="bg-white p-5 rounded-2xl border shadow-sm"><span class="text-xs font-bold text-red-400 block uppercase">Ditolak</span><span class="text-2xl font-black text-red-500 block mt-1" id="st-tolak">0</span></div>
+      </section>
+
+      <section class="bg-white rounded-2xl border shadow-sm overflow-hidden">
+        <div class="p-5 border-b bg-gray-50 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+          <h3 class="font-bold text-gray-800 text-sm">Tabel Master Berkas Calon Siswa</h3>
+          <input type="text" id="tableSearch" onkeyup="searchTable()" placeholder="Cari nama / NISN..." class="px-4 py-2 border rounded-xl text-xs sm:text-sm bg-white outline-none w-full sm:w-64">
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse" id="pendaftarTable">
+            <thead>
+              <tr class="bg-slate-50 text-slate-400 font-bold text-[11px] uppercase tracking-wider border-b">
+                <th class="py-4 px-5">ID / Waktu</th>
+                <th class="py-4 px-5">Nama Lengkap</th>
+                <th class="py-4 px-5">NISN / SD Asal</th>
+                <th class="py-4 px-5 text-center">Cek File Lampiran</th>
+                <th class="py-4 px-5 text-center">Status</th>
+                <th class="py-4 px-5 text-center">Aksi Konfirmasi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y text-xs sm:text-sm text-gray-600" id="table-body">
+              <tr>
+                <td colspan="6" class="py-10 text-center text-gray-400 font-medium">Menghubungkan ke cloud database...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
