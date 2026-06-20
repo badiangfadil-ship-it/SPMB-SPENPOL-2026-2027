@@ -4,7 +4,7 @@
  */
 
 // PENTING: Ganti URL di bawah ini dengan URL hasil Deploy baru dari Google Apps Script Anda!
-const API_URL = "https://script.google.com/macros/s/AKfycbx_CONTOH_ID_API_GAS/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzsK-IZMyF_-NUsVTOIM-EJ5Ean_JG6BkFrAWLcWb9rtg-hmRECw9dT8Eh_jTM24KXX/exec";
 
 async function callBackend(actionName, extraParams = {}) {
   const payload = {
