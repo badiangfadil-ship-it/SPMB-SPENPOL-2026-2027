@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPMB SMP NEGERI 1 POLI-POLIA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#F5F7FA] font-poppins min-h-screen text-gray-800">
+
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('beranda')">
+          <div class="p-2.5 bg-[#4F8EF7]/10 rounded-xl">
+            <i class="fa-solid fa-graduation-cap text-[#4F8EF7] text-3xl"></i>
+          </div>
+          <div>
+            <span class="font-extrabold text-lg tracking-tight block text-gray-900">SMPN 1 POLI-POLIA</span>
+            <span class="text-xs font-bold tracking-wider block uppercase text-[#4F8EF7]">Sistem Penerimaan Murid Baru</span>
+          </div>
+        </div>
+        <div class="hidden md:flex space-x-2 items-center">
+          <button onclick="switchTab('beranda')" id="nav-beranda" class="nav-btn active-nav px-4 py-2 rounded-xl text-sm font-semibold transition-all">Beranda</button>
+          <button onclick="switchTab('profil')" id="nav-profil" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 hover:text-[#4F8EF7] transition-all">Profil Sekolah</button>
+          <button onclick="switchTab('alur')" id="nav-alur" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 hover:text-[#4F8EF7] transition-all">Alur PPDB</button>
+          <button onclick="switchTab('daftar')" id="nav-daftar" class="bg-[#4F8EF7] hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl shadow-md transition-all active:scale-95 ml-2">Daftar Sekarang</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <section id="sec-beranda" class="tab-content block space-y-12 animate-fade-in">
+      <div class="bg-gradient-to-br from-[#4F8EF7] to-blue-700 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between">
+        <div class="z-10 max-w-2xl space-y-5 text-center md:text-left">
+          <span class="bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Tahun Pelajaran 2026–2027</span>
+          <h1 class="text-3xl sm:text-5xl font-black leading-tight">Selamat Datang di Portal Resmi <br><span class="text-yellow-300">SMP NEGERI 1 POLI-POLIA</span></h1>
+          <p class="text-blue-500/10 text-sm sm:text-base text-blue-100 font-medium max-w-lg">Mari bergabung bersama ekosistem belajar digital yang cerdas, menyenangkan, inklusif, dan berkarakter utuh.</p>
+          <div class="pt-2 flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+            <button onclick="switchTab('daftar')" class="bg-[#6FCF97] hover:bg-emerald-500 text-white font-black px-8 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">Mulai Pendaftaran <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></button>
+            <button onclick="switchTab('profil')" class="bg-white/10 hover:bg-white/25 border border-white/20 px-6 py-4 rounded-xl font-bold backdrop-blur-sm transition-all">Lihat Visi Misi</button>
+          </div>
+        </div>
+        <i class="fa-solid fa-school text-[12rem] text-white/10 hidden md:block z-0 pr-6"></i>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+          <div class="w-12 h-12 bg-blue-50 text-[#4F8EF7] flex items-center justify-center rounded-xl mb-4 text-xl font-bold"><i class="fa-solid fa-calendar-check"></i></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-1">Pendaftaran Online</h3>
+          <p class="text-sm text-gray-500 font-medium">1 Mei - 10 Juli 2026 secara mandiri melalui halaman website ini.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+          <div class="w-12 h-12 bg-amber-50 text-amber-500 flex items-center justify-center rounded-xl mb-4 text-xl font-bold"><i class="fa-solid fa-user-check"></i></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-1">Uji Validasi Berkas</h3>
+          <p class="text-sm text-gray-500 font-medium">11 Juli - 15 Juli 2026. Pemeriksaan fisik berkas oleh tim verifikator.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+          <div class="w-12 h-12 bg-emerald-50 text-[#6FCF97] flex items-center justify-center rounded-xl mb-4 text-xl font-bold"><i class="fa-solid fa-bullhorn"></i></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-1">Pengumuman Kelulusan</h3>
+          <p class="text-sm text-gray-500 font-medium">18 Juli 2026. Hasil kelulusan berkas diumumkan langsung secara online.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-profil" class="tab-content hidden max-w-4xl mx-auto space-y-8 animate-fade-in">
+      <div class="text-center space-y-2">
+        <h2 class="text-3xl font-extrabold text-gray-900">Visi & Misi Lembaga</h2>
+        <p class="text-gray-500 text-sm sm:text-base font-medium">SMP NEGERI 1 POLI-POLIA berkomitmen meniti standar mutu masa depan.</p>
+      </div>
+      <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-gray-100 space-y-6">
+        <div class="bg-[#4F8EF7]/5 p-6 rounded-2xl border-l-4 border-[#4F8EF7] text-center">
+          <span class="text-xs font-bold text-[#4F8EF7] uppercase tracking-widest block mb-1">Visi Utama</span>
+          <p class="text-lg sm:text-xl font-black text-gray-800 tracking-tight leading-relaxed">"TERWUJUDNYA GENERASI PELAJAR YANG UTUH DAN ADAPTIF DENGAN PERUBAHAN ZAMAN"</p>
+        </div>
+        <div class="space-y-4 pt-2">
+          <h4 class="font-bold text-gray-900 uppercase tracking-wider flex items-center text-sm"><i class="fa-solid fa-circle-nodes text-[#6FCF97] mr-2"></i> Misi Implementasi:</h4>
+          <ul class="space-y-4 text-sm sm:text-base text-gray-600 font-medium">
+            <li class="flex items-start"><span class="w-6 h-6 bg-emerald-50 text-[#6FCF97] text-xs font-bold rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">1</span><span>Menyelenggarakan pembelajaran yang mendalam dan bermakna dengan menerapkan prinsip mindful, meaningful, dan joyful learning dalam setiap kegiatan pembelajaran.</span></li>
+            <li class="flex items-start"><span class="w-6 h-6 bg-emerald-50 text-[#6FCF97] text-xs font-bold rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">2</span><span>Menumbuhkan karakter utuh melalui olah pikir, olah hati, olah rasa, dan olah raga yang terintegrasi dalam pembelajaran intrakurikuler, kokurikuler (7 KAIH), dan ekstrakurikuler.</span></li>
+            <li class="flex items-start"><span class="w-6 h-6 bg-emerald-50 text-[#6FCF97] text-xs font-bold rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">3</span><span>Mendorong adaptabilitas melalui integrasi teknologi dan literasi digital yang membekali peserta didik dengan keterampilan menggunakan teknologi secara bijak dan produktif.</span></li>
+            <li class="flex items-start"><span class="w-6 h-6 bg-emerald-50 text-[#6FCF97] text-xs font-bold rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">4</span><span>Menguatkan nilai-nilai lokal dan kebangsaan sebagai fondasi identitas diri melalui pembelajaran yang mengintegrasikan kearifan lokal budaya Tolaki dan nilai-nilai Pancasila.</span></li>
+            <li class="flex items-start"><span class="w-6 h-6 bg-emerald-50 text-[#6FCF97] text-xs font-bold rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">5</span><span>Membangun ekosistem belajar yang inklusif, kolaboratif, dan menggembirakan yang menghargai keberagaman dan mendorong partisipasi aktif seluruh warga sekolah.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-alur" class="tab-content hidden max-w-2xl mx-auto space-y-10 animate-fade-in">
+      <div class="text-center space-y-2">
+        <h2 class="text-3xl font-extrabold text-gray-900">Alur Pengajuan Berkas</h2>
+        <p class="text-gray-500 text-sm font-medium">Panduan ringkas tata cara pendaftaran digital.</p>
+      </div>
+      <div class="relative border-l border-gray-200 pl-6 space-y-8 py-2">
+        <div class="relative">
+          <div class="absolute -left-[35px] w-6 h-6 rounded-full bg-white border-4 border-[#4F8EF7]"></div>
+          <h4 class="font-bold text-gray-900">1. Pengisian Data & Unggah File</h4>
+          <p class="text-sm text-gray-500 mt-1">Mengisi formulir dengan benar lalu lampirkan pindaian dokumen (Foto, KK, Akta, Ijazah, KIS).</p>
+        </div>
+        <div class="relative">
+          <div class="absolute -left-[35px] w-6 h-6 rounded-full bg-white border-4 border-[#6FCF97]"></div>
+          <h4 class="font-bold text-gray-900">2. Unduh Lembar Bukti PDF</h4>
+          <p class="text-sm text-gray-500 mt-1">Sistem otomatis menerbitkan nomor pendaftaran dan melayangkan file bukti digital ke email Anda.</p>
+        </div>
+        <div class="relative">
+          <div class="absolute -left-[35px] w-6 h-6 rounded-full bg-white border-4 border-amber-400"></div>
+          <h4 class="font-bold text-gray-900">3. Validasi & Pengumuman Akhir</h4>
+          <p class="text-sm text-gray-500 mt-1">Tim kepanitiaan memvalidasi berkas berkas Anda untuk rilis kelulusan pada dashboard sistem.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-daftar" class="tab-content hidden max-w-4xl mx-auto animate-fade-in">
+      <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="bg-gradient-to-r from-[#4F8EF7] to-blue-600 px-6 py-6 text-white">
+          <h3 class="text-xl font-bold flex items-center"><i class="fa-solid fa-file-signature mr-3"></i> Formulir Registrasi Calon Siswa Baru</h3>
+          <p class="text-xs text-blue-100 mt-1">Isilah data di bawah ini sesuai akta kelahiran dan dokumen kependudukan resmi.</p>
+        </div>
+
+        <form id="ppdb-form" onsubmit="handleFormSubmit(event)" class="p-6 sm:p-10 space-y-8">
+          
+          <div class="space-y-4">
+            <h4 class="text-xs font-bold text-[#4F8EF7] uppercase tracking-wider border-b pb-2 flex items-center"><i class="fa-solid fa-user-check mr-2"></i> Data Identitas Diri</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">Nama Lengkap (Sesuai Ijazah) <span class="text-red-500">*</span></label>
+                <input type="text" id="nama" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">NISN (Wajib 10 Digit) <span class="text-red-500">*</span></label>
+                <input type="number" id="nisn" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">NIK KTP/KK (Wajib 16 Digit) <span class="text-red-500">*</span></label>
+                <input type="number" id="nik" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1.5">Tempat Lahir <span class="text-red-500">*</span></label>
+                  <input type="text" id="tempatLahir" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1.5">Tanggal Lahir <span class="text-red-500">*</span></label>
+                  <input type="date" id="tanggalLahir" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">Jenis Kelamin <span class="text-red-500">*</span></label>
+                <select id="jk" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+                  <option value="">-- Pilih --</option>
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">Agama <span class="text-red-500">*</span></label>
+                <select id="agama" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+                  <option value="">-- Pilih --</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Katolik">Katolik</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Budha">Budha</option>
+                </select>
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">Alamat Tempat Tinggal Lengkap <span class="text-red-500">*</span></label>
+                <textarea id="alamat" rows="2" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all"></textarea>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">Asal Sekolah SD/MI <span class="text-red-500">*</span></label>
+                <input type="text" id="asalSekolah" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">Alamat Email Aktif Pendaftar <span class="text-red-500">*</span></label>
+                <input type="email" id="email" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all" placeholder="contoh@gmail.com">
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-xs font-bold text-[#4F8EF7] uppercase tracking-wider border-b pb-2 flex items-center"><i class="fa-solid fa-users mr-2"></i> Informasi Data Orang Tua</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">Nama Ayah Kandung <span class="text-red-500">*</span></label>
+                <input type="text" id="namaAyah" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">Nama Ibu Kandung <span class="text-red-500">*</span></label>
+                <input type="text" id="namaIbu" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5">No. HP / WhatsApp Orang Tua <span class="text-red-500">*</span></label>
+                <input type="tel" id="hpOrangTua" required class="form-input w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none transition-all" placeholder="08xxxxxxxx">
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-xs font-bold text-[#4F8EF7] uppercase tracking-wider border-b pb-2 flex items-center"><i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload Berkas Digital (JPG/PNG/JPEG | Maksimal 2MB per file)</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+              <div class="bg-gray-50 p-4 border border-dashed border-gray-200 rounded-xl text-center">
+                <label class="block text-xs font-bold text-gray-700 mb-2">Pas Foto Calon Siswa <span class="text-red-500">*</span></label>
+                <input type="file" id="fileFoto" required accept="image/*" class="text-xs w-full text-gray-500">
+              </div>
+              <div class="bg-gray-50 p-4 border border-dashed border-gray-200 rounded-xl text-center">
+                <label class="block text-xs font-bold text-gray-700 mb-2">Kartu Keluarga (KK) <span class="text-red-500">*</span></label>
+                <input type="file" id="fileKk" required accept="image/*" class="text-xs w-full text-gray-500">
+              </div>
+              <div class="bg-gray-50 p-4 border border-dashed border-gray-200 rounded-xl text-center">
+                <label class="block text-xs font-bold text-gray-700 mb-2">Akta Kelahiran <span class="text-red-500">*</span></label>
+                <input type="file" id="fileAkta" required accept="image/*" class="text-xs w-full text-gray-500">
+              </div>
+              <div class="bg-gray-50 p-4 border border-dashed border-gray-200 rounded-xl text-center">
+                <label class="block text-xs font-bold text-gray-700 mb-2">Ijazah / SKL SD <span class="text-red-500">*</span></label>
+                <input type="file" id="fileIjazah" required accept="image/*" class="text-xs w-full text-gray-500">
+              </div>
+              <div class="bg-gray-50 p-4 border border-dashed border-gray-200 rounded-xl text-center sm:col-span-2 md:col-span-1">
+                <label class="block text-xs font-bold text-gray-700 mb-2">Kartu KIS / PKH (Opsional)</label>
+                <input type="file" id="fileKis" accept="image/*" class="text-xs w-full text-gray-500">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-[#4F8EF7] hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Submit Formulir Pendaftaran</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t py-6 text-center text-xs sm:text-sm font-medium text-gray-400 mt-20">
+    &copy; 2026 SMP NEGERI 1 POLI-POLIA. Hak Cipta Dilindungi Undang-Undang.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
